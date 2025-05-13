@@ -1,9 +1,4 @@
-
-if ('__TAURI__' in window) {
-  const { fetch } = await import('@tauri-apps/plugin-http');
-  fetch
-}
-
+import { fetch } from '@tauri-apps/plugin-http';
 import { useState, useEffect, useRef } from "react";
 import "./styles.css"; 
 
