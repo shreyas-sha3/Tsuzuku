@@ -1,8 +1,11 @@
-import { fetch } from '@tauri-apps/plugin-http';
+
+if ('__TAURI__' in window) {
+  const { fetch } = await import('@tauri-apps/plugin-http');
+  // use fetch here
+}
+
 import { useState, useEffect, useRef } from "react";
 import "./styles.css"; 
-import { Touch } from "./Touch";
-
 
 export function App() {
   const [pages, setPages] = useState<string[]>([]);
@@ -46,22 +49,34 @@ export function App() {
   const fetchPages = async (chapterId: string) => {
     setCurrentPage(0);
     setShowSearch(false);
+  
     const res = await fetch(`https://api.mangadex.org/at-home/server/${chapterId}`);
     const data = await res.json();
-    const hash = data.chapter.hash;
-    const baseUrl = data.baseUrl;
-    const urls = data.chapter.data.map((page: string) => `${baseUrl}/data/${hash}/${page}`);
-    preloadImages(urls);
-    setPages(urls);
-  };
-
-  // Preload images
-const preloadImages = (urls: string[]) => {
-  urls.forEach(url => {
-    const img = new Image();
-    img.src = url;
-  });
-};
+  
+    const hash: string = data.chapter.hash;
+    const baseUrl: string = data.baseUrl;
+    const imageFilenames: string[] = data.chapter.data;
+  
+    const urls: string[] = imageFilenames.map(
+      (page: string) => `${baseUrl}/data/${hash}/${page}`
+    );
+  
+    let loadedCount = 0;
+    const loadThreshold = 3;
+    let alreadySet = false;
+  
+    urls.forEach((url: string) => {
+      const img = new Image();
+      img.onload = () => {
+        loadedCount++;
+        if (loadedCount >= loadThreshold && !alreadySet) {
+          alreadySet = true;
+          setPages(urls);
+        }
+      };
+      img.src = url;
+    });
+  }; 
 
   const handleChapterFetch = async () => {
     if (chapterNumber !== null) {
@@ -219,9 +234,6 @@ const preloadImages = (urls: string[]) => {
   </div>
 </div>
 
-
-
-      <Touch />
       <div className="image-box">
         {pages.length > 0 && (
           <img

@@ -1,5 +1,14 @@
 import { useEffect } from "react";
-import { getCurrentWindow } from '@tauri-apps/api/window';
+let getCurrentWindow: () => any;
+
+if ('__TAURI_IPC__' in window) {
+  // @ts-ignore
+  getCurrentWindow = (await import('@tauri-apps/api/window')).getCurrent;
+} else {
+  getCurrentWindow = () => null;
+}
+// import { getCurrentWindow } from '@tauri-apps/api/window';
+
       const appWindow = getCurrentWindow();
     
       // Minimize button
