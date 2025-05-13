@@ -1,0 +1,196 @@
+* {
+  user-select: none;
+  -webkit-user-select: none;
+  -ms-user-select: none;
+}
+
+html, body, #root {
+  
+  background-color: black;
+  margin: 0;
+  height: 100%;
+  overflow: hidden;
+}
+
+/* Floating Search Container */
+.searchManga {
+  position: fixed;
+  color: white;
+  background-color: black;
+  padding:  0 15px 15px 15px;
+  border-radius: 15px;
+  z-index: 1000;
+  width: 350px;
+  display: flex;
+  flex-direction: column;
+}
+
+.searchManga h1 {
+  color: whitesmoke;
+  font-size: 20px;
+  margin-bottom: 10px;
+  text-align: center;
+}
+
+/* Input Styling */
+.searchManga input {
+  padding: 10px;
+  font-size: 1rem;
+  border: 1px solid black; /* Dark border */
+  border-radius: 5px;
+  margin-bottom: 5px;
+  background-color: #333; /* Dark background */
+  color: white;
+  outline: none;
+  width: 90%;
+
+}
+
+.searchManga input[type="number"]::-webkit-inner-spin-button,
+.searchManga input[type="number"]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+
+.searchManga ul {
+  padding-left: 0;
+  margin: 0;
+  list-style-type: none;
+}
+
+.searchManga li {
+  padding: 5px 0;
+  text-align: left;
+  width: 100%; /* Ensure the list item stretches to the full width */
+}
+
+.searchManga button {
+  width: 100%;
+  text-align: left; 
+}
+
+.titlebar {
+  height: 25px;
+  background: #000000;
+  user-select: none;
+  display: flex;
+  justify-content: flex-end;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 10;
+}
+
+.titlebar-button {
+  color: whitesmoke;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  width: 25px;
+  height: 25px;
+  user-select: none;
+  -webkit-user-select: none;
+}
+.titlebar-button:hover {
+  background-color: #888;
+}
+
+.Title {
+  color: whitesmoke;
+  font-size: 28px;
+  font-weight: 600;
+  letter-spacing: 1px;
+  margin: 0;
+  padding: 8px 16px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  box-sizing: border-box;
+  width: 100%;
+  position: fixed;
+  top: 25px; /* below titlebar */
+  left: 0;
+  right: 0;
+  background-color: #000; /* match background */
+  z-index: 9;
+}
+
+.Title .title {
+  flex: 1 1 auto;
+  font-size: 28px;
+  font-weight: 600;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+
+.Title .pgno {
+  font-size: 14px;
+  color: #888;
+  font-weight: 400;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  display: flex;
+  flex-direction: column;
+  white-space: nowrap;
+  align-items: flex-end;
+}
+
+.Title .pgno .chapter {
+  color: whitesmoke;
+  margin-bottom: 3px;
+}
+
+.container {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+
+.image-box {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin:  85px 2.5px 20px 2.5px;
+  height: 100vh;
+  overflow: hidden;
+  position: relative;
+}
+
+.image-box img {
+  max-width: 100%;
+  max-height: 100%;
+  border-radius: 8px; 
+  object-fit: contain; 
+
+}
+
+
+.buttons {
+  display: flex;
+  width: 100%;
+  height: 80px;
+}
+
+button {
+  border: none;
+  flex: 1;
+  font-size: 16px;
+  background-color: #000;
+  cursor: pointer;
+  color: #888;
+  border-radius: 10px;
+}
+button:hover{  
+  color: white;
+  
+  }
+
+

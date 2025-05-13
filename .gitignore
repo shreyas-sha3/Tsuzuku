@@ -1,0 +1,19 @@
+# Node.js
+node_modules/
+package-lock.json
+
+# Rust
+target/
+Cargo.lock
+
+# Tauri
+src-tauri/target/
+squashfs-root/
+dist/
+out/
+
+# IDEs
+.vscode/
+
+# Logs
+*.log
